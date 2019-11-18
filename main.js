@@ -1,5 +1,5 @@
 (function(){
-	'use srrict';
+	'use strict';
 	//*****************************1 
 	/*{
 		function numberOutput(n){
