@@ -1,0 +1,99 @@
+body{
+	font-family: 'Alata', sans-serif;
+	background:url(../image/cracked-wall.png);
+}
+div.block {
+	background: #d9c61a;
+	width:450px;
+	height: 630px;
+	margin:0 auto;
+	border: 6px solid #0a0a0a;
+	border-radius: 10px; 
+	box-sizing:border-box ;
+}
+div.block h1{
+	color:#0a0a0a;
+	text-align: center;
+}
+div.takeCoffe{
+	width: 8%;
+	height: 8%;
+	background: #750101;
+	border-radius:5px;
+	margin:35px auto 0 auto;
+	border: 4px solid #0a0a0a;
+	
+}
+div.moneyInside{
+	width: 8%;
+	height: 3%;
+	background: #0a0a0a;
+	border-radius: 5px;
+	margin-left:350px;
+}
+div p.cash{
+	padding-left:349px;
+	margin-bottom: -3px;
+	font-size: 15px;
+}
+div.change{
+	width: 8%;
+	height: 3%;
+	background: #0a0a0a;
+	border-radius: 5px;
+	margin:0 0 0 350px;
+	
+}
+div p.change{
+	padding-left:342px;
+	margin-bottom: -3px;
+	font-size: 15px;
+}
+div span.changeOut,div span.money{
+	font-size: 15px;
+	color: #e0e0e0;
+	padding-left: 12px;	
+}
+ul li p{
+	display: inline-block;
+}
+ul li p.E-cost{
+	padding-left: 25px;
+}
+ul li p.A-cost{
+	padding-left: 10px;
+}
+ul li p.L-cost{
+	padding-left: 53px;
+}
+ul li p.C-cost{
+	padding-left: 13px;
+}
+ul li p.D-cost{
+	padding-left: 35px;
+}
+div ul{
+	list-style-type:none;
+}
+div ul li{
+	display: block;
+}
+ul li button{
+	height: 18px;
+	width: 18px;
+	border-radius:11px;
+	margin:0px 20px 0px 105px;
+	padding-top: 12px;
+	border:none;
+	background: #750101;
+}
+div img{
+	padding-top: 5px;
+	display: none; 
+	
+}
+
+
+
+
+
