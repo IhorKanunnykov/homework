@@ -2,58 +2,83 @@
     'use strict';
 
     async function getUsers(){
-//_________________________________________________________________
-        let user = await fetch('https://jsonplaceholder.typicode.com/users')
-            let users = await user.json(); 
+//_____________________________SERVER ACCESS____________________________________
+
+        let user = await fetch ('https://jsonplaceholder.typicode.com/users')
+            let users = await user.json (); 
             //console.log(users);
             //console.log(users[1].name)
-//__________________________________________________________________
 
-        let modal = document.querySelector('.modal');
-        let close = document.querySelector('.close');
-        let userInfo = document.querySelector('.userInfo');
-        let userId = document.querySelector('.table');
+//_____________________________SELECTORS_____________________________________
 
+        let modal = document.querySelector ('.modal');
+        let close = document.querySelector ('.close');
+        let userInfo = document.querySelector ('.userInfo');
+        let userId = document.querySelector ('.table');
+        let sortName = document.querySelector ('.nameSort');
+        
 
-//__________________________________________________________________
+//______________________________USERS IN TABLE____________________________________
 
         
-        function usersToTable(users){
-            return `<tr>
-                <td class="name">Name</td>
-                <td>Username</td>
-                <td>Email</td>
-                <td>Phone</td>
-                <td>Website</td>
-            </tr>`+users.reduce((html, user)=> html +`
+        function usersToTable (users) {
+            return users.reduce ((html, user) => html +`
              <tr >
-                <td class="userId" data-id="${ user.id }">${ user.name }</td>
-                <td>${ user.username }</td>
-                <td>${ user.email }</td>
-                <td>${ user.phone }</td>
-                <td>${ user.website }</td>
+                <td class="userId" data-name="${ user.name }" data-id="${ user.id }"> ${ user.name } </td>
+                <td class-"notGenereteEvent" data-name="${ user.username }"> ${ user.username } </td>
+                <td class-"notGenereteEvent" data-name="${ user.email }"> ${ user.email } </td>
+                <td class-"notGenereteEvent" > ${ user.phone } </td>
+                <td class-"notGenereteEvent" data-name="${ user.website }"> ${ user.website } </td>
                 
             </tr> 
-
-
             `, '');
         }
-        userId.innerHTML = usersToTable(users);
 
+        userId.innerHTML = usersToTable (users);
 
-//__________________________________________________________________
+//_____________________________________SORT______________________
 
-  
-        userId.addEventListener('click',onSelectUser);
+		sortName.addEventListener ('click', onSelectName);
 
-        function onSelectUser(event){
-            event.preventDefault();
-            const name = event.target.getAttribute('data-id');
+		function onSelectName (event){
+			const headName = event.target.getAttribute ('data-name');
+			const dataUsers = users.find (item => item.name === headName)
+
+			clickHandlerName (dataUsers)
+			userId.innerHTML = clickHandlerName (users);
+
+			function clickHandlerName () {
+				const compare = (a, b) => {
+					const elemA = a.name
+                    const elemB = b.name
+
+                    let comparison = 0
+                    if (elemA > elemB) {
+                    	comparison = 1
+                    } else if (elemA < elemB) {
+                    	comparison = -1
+                    }
+                    return comparison
+				}
+				users.sort (compare)
+				return usersToTable (users)
+			}
+		}
+		
+//_________________________________MODAL____________________________
+
+	
+        userId.addEventListener ('click', onSelectUser);
+
+        function onSelectUser(event) {
+            event.preventDefault ();
+            const name = event.target.getAttribute ('data-id');
             //console.log(users[name-1]);
             const selectedUser = users[name-1]
             //console.log(selectedUser);
+            console.log(event)
 
-            function selectedUserToModal(selectedUser){
+            function selectedUserToModal (selectedUser) {
                return `<p>
                <h3>${selectedUser.name}</h3>
                <h3>Adress:</h3>
@@ -69,20 +94,18 @@
             }
 
             //selectedUserToTable(selectedUser);
-            userInfo.innerHTML = selectedUserToModal(selectedUser);
-            modal.setAttribute('style','display:block;');
+            userInfo.innerHTML = selectedUserToModal (selectedUser);
+            modal.setAttribute('style', 'display:block;');
 
            
         }
         
-        close.addEventListener('click',()=>{
-            modal.setAttribute('style','display:none;');
+        close.addEventListener ('click',() => {
+            modal.setAttribute ('style', 'display:none;');
         });
          
     
     }
     getUsers();
+
     })();
-    //fetch('https://jsonplaceholder.typicode.com/users')
-    //        .then(response => response.json())
-     //       .then(json => /*console.log*/(json))
