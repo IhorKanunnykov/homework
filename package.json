@@ -1,21 +1,21 @@
 {
-  "name": "09",
+  "name": "usersToTableNuxt",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "My awe-inspiring Nuxt.js project",
+  "author": "Ihor Kanunnykov",
+  "private": true,
   "scripts": {
-    "start": "parcel -p 3000 watch index.html"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@babel/core": "^7.7.4",
-    "@babel/plugin-proposal-class-properties": "^7.7.4",
-    "@babel/plugin-transform-runtime": "^7.7.4",
-    "babel-plugin-transform-class-properties": "^6.24.1"
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "api": "json-server --watch ./api/db.json --port 8080"
   },
   "dependencies": {
-    "@babel/runtime": "^7.7.4"
+    "nuxt": "^2.0.0",
+    "@nuxtjs/axios": "^5.3.6"
+  },
+  "devDependencies": {
+    "@nuxtjs/router": "^1.5.0"
   }
 }
