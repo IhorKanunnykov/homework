@@ -3,7 +3,7 @@
     <table>
       <thead>
         <tr>
-          <th class="nameSort">Name</th>
+          <th @click.prevent="onSort()" class="nameSort">Name</th>
           <th>Username</th>
           <th>Email</th>
           <th>Phone</th>
@@ -15,101 +15,208 @@
         <UserListItem :user="user" v-for="user of users" :key="user.id" />
       </tbody>
     </table>
-    <form @submit.prevent="onSubmit">
-      <div>
-        <label>
-          <input v-model="newUser.name" type="text" placeholder="Name" />
-        </label>
-      </div>
-      <div>
-        <label>
-          <input
-            v-model="newUser.username"
-            type="text"
-            placeholder="UserName"
-          />
-        </label>
-      </div>
-      <div>
-        <label>
-          <input v-model="newUser.email" type="email" placeholder="Email" />
-        </label>
-      </div>
-      <div>
-        <label>
-          <input v-model="newUser.phone" type="text" placeholder="Phone" />
-        </label>
-      </div>
-      <div>
-        <label>
-          <input v-model="newUser.website" type="text" placeholder="Website" />
-        </label>
-      </div>
-      <div>
-        <label>
-          <input
-            v-model="newUser.address.city"
-            type="text"
-            placeholder="City"
-          />
-        </label>
-      </div>
-      <div>
-        <label>
-          <input
-            v-model="newUser.address.street"
-            type="text"
-            placeholder="Street"
-          />
-        </label>
-      </div>
-      <div>
-        <label>
-          <input
-            v-model="newUser.address.suite"
-            type="text"
-            placeholder="Suite"
-          />
-        </label>
-      </div>
-      <div>
-        <label>
-          <input
-            v-model="newUser.address.zipcode"
-            type="text"
-            placeholder="ZipCode"
-          />
-        </label>
-      </div>
-      <div>
-        <label>
-          <input
-            v-model="newUser.company.name"
-            type="text"
-            placeholder="Company name"
-          />
-        </label>
-      </div>
-      <div>
-        <label>
-          <input
-            v-model="newUser.company.catchPhrase"
-            type="text"
-            placeholder="Company catch phrase "
-          />
-        </label>
-      </div>
-      <div>
-        <label>
-          <input
-            v-model="newUser.company.bs"
-            type="text"
-            placeholder="Company bs"
-          />
-        </label>
-      </div>
-      <button type="submit">Create</button>
-    </form>
+    <validation-observer ref="newUserForm" v-slot="{ handleSubmit }" tag="div">
+      <form @submit.prevent="handleSubmit(onSubmit)">
+        <validation-provider
+          v-slot="{ classes, errors }"
+          name="name"
+          rules="required"
+          tag="div"
+        >
+          <label>
+            <input
+              v-model="newUser.name"
+              :class="classes"
+              type="text"
+              placeholder="Name"
+            />
+          </label>
+          <p v-for="error of errors">
+            <span class="error">{{ error }}</span>
+          </p>
+        </validation-provider>
+        <validation-provider
+          v-slot="{ classes, errors }"
+          name="username"
+          rules="required"
+          tag="div"
+        >
+          <label>
+            <input
+              v-model="newUser.username"
+              type="text"
+              placeholder="UserName"
+            />
+          </label>
+          <p v-for="error of errors">
+            <span class="error">{{ error }}</span>
+          </p>
+        </validation-provider>
+        <validation-provider
+          v-slot="{ classes, errors }"
+          name="Email"
+          rules="required|email"
+          tag="div"
+        >
+          <label>
+            <input v-model="newUser.email" type="email" placeholder="Email" />
+          </label>
+          <p v-for="error of errors">
+            <span class="error">{{ error }}</span>
+          </p>
+        </validation-provider>
+        <validation-provider
+          v-slot="{ classes, errors }"
+          name="Phone"
+          rules="required"
+          tag="div"
+        >
+          <label>
+            <input v-model="newUser.phone" type="text" placeholder="Phone" />
+          </label>
+          <p v-for="error of errors">
+            <span class="error">{{ error }}</span>
+          </p>
+        </validation-provider>
+        <validation-provider
+          v-slot="{ classes, errors }"
+          name="Website"
+          rules="required"
+          tag="div"
+        >
+          <label>
+            <input
+              v-model="newUser.website"
+              type="text"
+              placeholder="Website"
+            />
+          </label>
+          <p v-for="error of errors">
+            <span class="error">{{ error }}</span>
+          </p>
+        </validation-provider>
+        <validation-provider
+          v-slot="{ classes, errors }"
+          name="City"
+          rules="required"
+          tag="div"
+        >
+          <label>
+            <input
+              v-model="newUser.address.city"
+              type="text"
+              placeholder="City"
+            />
+          </label>
+          <p v-for="error of errors">
+            <span class="error">{{ error }}</span>
+          </p>
+        </validation-provider>
+        <validation-provider
+          v-slot="{ classes, errors }"
+          name="Street"
+          rules="required"
+          tag="div"
+        >
+          <label>
+            <input
+              v-model="newUser.address.street"
+              type="text"
+              placeholder="Street"
+            />
+          </label>
+          <p v-for="error of errors">
+            <span class="error">{{ error }}</span>
+          </p>
+        </validation-provider>
+        <validation-provider
+          v-slot="{ classes, errors }"
+          name="Suite"
+          rules="required"
+          tag="div"
+        >
+          <label>
+            <input
+              v-model="newUser.address.suite"
+              type="text"
+              placeholder="Suite"
+            />
+          </label>
+          <p v-for="error of errors">
+            <span class="error">{{ error }}</span>
+          </p>
+        </validation-provider>
+        <validation-provider
+          v-slot="{ classes, errors }"
+          name="ZipCode"
+          rules="required"
+          tag="div"
+        >
+          <label>
+            <input
+              v-model="newUser.address.zipcode"
+              type="text"
+              placeholder="ZipCode"
+            />
+          </label>
+          <p v-for="error of errors">
+            <span class="error">{{ error }}</span>
+          </p>
+        </validation-provider>
+        <validation-provider
+          v-slot="{ classes, errors }"
+          name="Company name"
+          rules="required"
+          tag="div"
+        >
+          <label>
+            <input
+              v-model="newUser.company.name"
+              type="text"
+              placeholder="Company name"
+            />
+          </label>
+          <p v-for="error of errors">
+            <span class="error">{{ error }}</span>
+          </p>
+        </validation-provider>
+        <validation-provider
+          v-slot="{ classes, errors }"
+          name="Company catch phrase"
+          rules="required"
+          tag="div"
+        >
+          <label>
+            <input
+              v-model="newUser.company.catchPhrase"
+              type="text"
+              placeholder="Company catch phrase "
+            />
+          </label>
+          <p v-for="error of errors">
+            <span class="error">{{ error }}</span>
+          </p>
+        </validation-provider>
+        <validation-provider
+          v-slot="{ classes, errors }"
+          name="Company bs"
+          rules="required"
+          tag="div"
+        >
+          <label>
+            <input
+              v-model="newUser.company.bs"
+              type="text"
+              placeholder="Company bs"
+            />
+          </label>
+          <p v-for="error of errors">
+            <span class="error">{{ error }}</span>
+          </p>
+        </validation-provider>
+        <button type="submit">Create</button>
+      </form>
+    </validation-observer>
   </div>
 </template>
 
@@ -152,19 +259,27 @@ export default {
     }),//такой способ если на странице небыло computed св-в 
   methods: {
      ...mapActions({
-      addUser: 'users/addUser'
+      addUser: 'users/addUser',
+      sort: 'users/sort'
     }),
    // async 
     async onSubmit(){
+      if (await this.$refs.newUserForm.validate()){
+          try{
+          await this.addUser(this.newUser)
+          
+        } catch (e) {
+          console.log(e)
+        }
+      }  
+    },
+    async onSort(){
       try{
-        await this.addUser(this.newUser)
-        
-      } catch (e) {
+        await this.sort('users/sortUsers')
+      } catch(e){
         console.log(e)
       }
     }
-   
-  
   }     
   
 }
@@ -187,6 +302,10 @@ export default {
         td {
         text-align: center;
         cursor:default;
+        }
+        .error{
+          color:#8B0000;
+          font-size: 10px;
         }
       
 </style>

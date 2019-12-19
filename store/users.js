@@ -29,6 +29,10 @@ export const actions = {
     async deleteUser({ commit }, id) {
         await this.$axios.$delete(`/users/${id}`)
         commit('deleteUser', id)
+    },
+    async sortUsers({ commit }) {
+        const sortUsers = await this.$axios.$get('/users?_sort=views&_order=ascusers')
+        commit('sort', sortUsers)
     }
 
 }
@@ -46,5 +50,8 @@ export const mutations = {
         const index = state.users.findIndex(user => user.id === id)
         state.users.splice(index, 1)
 
+    },
+    sort(state, sortUsers) {
+        state.users = sortUsers
     }
 }

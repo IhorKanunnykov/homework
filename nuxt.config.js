@@ -28,6 +28,7 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    { src: '~/plugins/validate.js', ssr: true }
   ],
   /*
   ** Nuxt.js dev-modules
@@ -54,6 +55,9 @@ export default {
   ** Build configuration
   */
   build: {
+    transpile: [
+      'vue-validate/dist/rules'
+    ],
     /*
     ** You can extend webpack config here
     */
