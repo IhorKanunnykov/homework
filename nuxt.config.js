@@ -56,7 +56,7 @@ export default {
   */
   build: {
     transpile: [
-      'vue-validate/dist/rules'
+      'vee-validate/dist/rules'
     ],
     /*
     ** You can extend webpack config here
