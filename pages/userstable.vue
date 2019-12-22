@@ -3,9 +3,9 @@
     <table>
       <thead>
         <tr>
-          <th @click.prevent="onSort()" class="nameSort">Name</th>
-          <th>Username</th>
-          <th>Email</th>
+          <th @click.prevent="onSort()">Name</th>
+          <th @click.prevent="onSortUsername()">Username</th>
+          <th @click.prevent="onSortEmail()">Email</th>
           <th>Phone</th>
           <th>Website</th>
           <th>Delete user</th>
@@ -31,7 +31,7 @@
               placeholder="Name"
             />
           </label>
-          <p v-for="error of errors">
+          <p v-for="error of errors" :key="error">
             <span class="error">{{ error }}</span>
           </p>
         </validation-provider>
@@ -48,7 +48,7 @@
               placeholder="UserName"
             />
           </label>
-          <p v-for="error of errors">
+          <p v-for="error of errors" :key="error">
             <span class="error">{{ error }}</span>
           </p>
         </validation-provider>
@@ -61,7 +61,7 @@
           <label>
             <input v-model="newUser.email" type="email" placeholder="Email" />
           </label>
-          <p v-for="error of errors">
+          <p v-for="error of errors" :key="error">
             <span class="error">{{ error }}</span>
           </p>
         </validation-provider>
@@ -74,7 +74,7 @@
           <label>
             <input v-model="newUser.phone" type="text" placeholder="Phone" />
           </label>
-          <p v-for="error of errors">
+          <p v-for="error of errors" :key="error">
             <span class="error">{{ error }}</span>
           </p>
         </validation-provider>
@@ -91,7 +91,7 @@
               placeholder="Website"
             />
           </label>
-          <p v-for="error of errors">
+          <p v-for="error of errors" :key="error">
             <span class="error">{{ error }}</span>
           </p>
         </validation-provider>
@@ -108,7 +108,7 @@
               placeholder="City"
             />
           </label>
-          <p v-for="error of errors">
+          <p v-for="error of errors" :key="error">
             <span class="error">{{ error }}</span>
           </p>
         </validation-provider>
@@ -125,7 +125,7 @@
               placeholder="Street"
             />
           </label>
-          <p v-for="error of errors">
+          <p v-for="error of errors" :key="error">
             <span class="error">{{ error }}</span>
           </p>
         </validation-provider>
@@ -142,7 +142,7 @@
               placeholder="Suite"
             />
           </label>
-          <p v-for="error of errors">
+          <p v-for="error of errors" :key="error">
             <span class="error">{{ error }}</span>
           </p>
         </validation-provider>
@@ -159,7 +159,7 @@
               placeholder="ZipCode"
             />
           </label>
-          <p v-for="error of errors">
+          <p v-for="error of errors" :key="error">
             <span class="error">{{ error }}</span>
           </p>
         </validation-provider>
@@ -176,7 +176,7 @@
               placeholder="Company name"
             />
           </label>
-          <p v-for="error of errors">
+          <p v-for="error of errors" :key="error">
             <span class="error">{{ error }}</span>
           </p>
         </validation-provider>
@@ -193,7 +193,7 @@
               placeholder="Company catch phrase "
             />
           </label>
-          <p v-for="error of errors">
+          <p v-for="error of errors" :key="error">
             <span class="error">{{ error }}</span>
           </p>
         </validation-provider>
@@ -210,7 +210,7 @@
               placeholder="Company bs"
             />
           </label>
-          <p v-for="error of errors">
+          <p v-for="error of errors" :key="error">
             <span class="error">{{ error }}</span>
           </p>
         </validation-provider>
@@ -260,7 +260,9 @@ export default {
   methods: {
      ...mapActions({
       addUser: 'users/addUser',
-      sort: 'users/sort'
+      sort: 'users/sortUsers',
+      sortUsername: 'users/sortUsersUsername',
+      sortEmail: 'users/sortEmail'
     }),
    // async 
     async onSubmit(){
@@ -273,20 +275,33 @@ export default {
         }
       }  
     },
-    async onSort(){
+    async onSort () {
       try{
         await this.sort('users/sortUsers')
       } catch(e){
         console.log(e)
       }
+    },
+    async onSortUsername () {
+      try{
+        await this.sortUsername('users/sortUsersUsername')
+      } catch(e){
+        console.log(e)
+      }
+    },
+    async onSortEmail () {
+      try{
+        await this.sortEmail('users/sortEmail')
+      } catch(e){
+        console.log(e)
+      }
     }
   }     
-  
 }
 </script>
 
 <style scoped>
-    table {
+        table {
         border-collapse: collapse;
         border: 2px solid rgb(200,200,200);
         letter-spacing: 1px;

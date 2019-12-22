@@ -31,9 +31,17 @@ export const actions = {
         commit('deleteUser', id)
     },
     async sortUsers({ commit }) {
-        const sortUsers = await this.$axios.$get('/users?_sort=views&_order=ascusers')
+        const sortUsers = await this.$axios.$get('/users?_sort=name&_order=ascusers')
         commit('sort', sortUsers)
-    }
+    },
+    async sortUsersUsername({ commit }) {
+        const sortUsers = await this.$axios.$get('/users?_sort=username&_order=ascusers')
+        commit('sort', sortUsers)
+    },
+    async sortEmail({ commit }) {
+        const sortUsers = await this.$axios.$get('/users?_sort=email&_order=ascusers')
+        commit('sort', sortUsers)
+    },
 
 }
 

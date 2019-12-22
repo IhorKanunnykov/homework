@@ -58,14 +58,14 @@ export default {
 
 <style scoped>
 
-    td, th {
-         border: 1px solid rgb(190,190,190);
-        padding: 10px 20px;
-        }
+  td, th {
+    border: 1px solid rgb(190,190,190);
+    padding: 10px 20px;
+  }
 
-        td {
-        text-align: center;
-        cursor:default;
-        }
+  td {
+    text-align: center;
+    cursor:default;
+  }
 
 </style>

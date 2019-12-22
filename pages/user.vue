@@ -14,8 +14,6 @@
       <p>CatchPhrase -{{ user.company.catchPhrase }}</p>
       <p>Bs -{{ user.company.bs }}</p>
     </div>
-
-    {{ myUsers }}
   </div>
 </template>
 
@@ -49,15 +47,15 @@ export default {
       // myUsers-имячто работает в рамках этой страницы
       // users- имя getter в store/index.js
       // }    
-      computed: mapGetters ({
-        myUsers:'users'
-      }),//такой способ если на странице небыло computed св-в 
-      created() {
-        this.loadUsers()
-      },     
-      methods: mapActions({
-        loadUsers: 'loadUsers'
-      })
+      // computed: mapGetters ({
+      //   myUsers:'users'
+      // }),//такой способ если на странице небыло computed св-в 
+      // created() {
+      //   this.loadUsers()
+      // },     
+      // methods: mapActions({
+      //   loadUsers: 'loadUsers'
+      // })
       
     }
 
